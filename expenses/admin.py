@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models.expense import Expense
+from .models.category import Category
+from .models.recurrence import Recurrence
 
-# Register your models here.
+admin.site.register([Expense, Category, Recurrence])
