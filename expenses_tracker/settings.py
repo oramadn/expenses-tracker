@@ -20,14 +20,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'expenses.apps.ExpensesConfig',
-    'debug_toolbar',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    'django_extensions',
+    'expenses.apps.ExpensesConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,12 @@ INTERNAL_IPS = [
     # ...
     "127.0.0.1",
     # ...
+]
+
+SHELL_PLUS = "ipython"
+
+SHELL_PLUS_POST_IMPORTS = [
+    'from expenses.models import *'
 ]
 
 CURRENCIES = [
