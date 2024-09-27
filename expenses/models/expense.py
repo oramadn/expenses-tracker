@@ -11,7 +11,8 @@ class Expense(models.Model):
   
   amount = models.DecimalField(max_digits=10, decimal_places=2)
   currency = models.CharField(max_length=3, choices=settings.CURRENCIES)
-  category = models.ForeignKey(Category, on_delete=models.CASCADE)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='expenses')
+  subcategory = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='sub_expenses', null=True, blank=True)
   expense_type = models.CharField(max_length=10, choices=EXPENSE_TYPES)
   description = models.TextField(blank=True, null=True)
   expense_date = models.DateTimeField(null=True, blank=True)
