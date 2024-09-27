@@ -20,5 +20,27 @@ class ExpenseAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/expense_form.js',)
+        
+class ParentCategoryFilter(admin.SimpleListFilter):
+    title = 'Category Type'
+    parameter_name = 'parent_category'
 
-admin.site.register([Category, Recurrence])
+    def lookups(self, request, model_admin):
+        return (
+            ('parent', 'Main Categories'),
+            ('subcategory', 'Subcategories'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'parent':
+            return queryset.filter(parent=None)
+        if self.value() == 'subcategory':
+            return queryset.filter(parent__isnull=False)
+        return queryset
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent', 'created_at')
+    list_filter = (ParentCategoryFilter,)
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Recurrence)
