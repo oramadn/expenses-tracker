@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script src="{% static 'admin/js/expense_form.js' %}"></script>
+{% endblock %}
+
+{% block field_sets %}
+<div x-data="expenseForm()">
+    {{ block.super }}
+</div>
+{% endblock %}
