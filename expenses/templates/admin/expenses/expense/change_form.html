@@ -5,6 +5,21 @@
 {{ block.super }}
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <script src="{% static 'admin/js/expense_form.js' %}"></script>
+<style>
+    .form-row {
+        transition: opacity 0.3s, max-height 0.3s;
+        overflow: hidden;
+    }
+    .form-row.hidden {
+        display: none !important;
+    }
+    .form-row:not(.hidden) {
+        max-height: none !important;
+    }
+    .required {
+        font-weight: bold;
+    }
+</style>
 {% endblock %}
 
 {% block field_sets %}
