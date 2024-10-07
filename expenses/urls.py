@@ -1,8 +1,7 @@
 from django.urls import path
 from .views import (
     expenses_view,
-    categories_view,
-    recurrences_view
+    categories_view
 )
 
 urlpatterns = [

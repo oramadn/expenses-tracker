@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models.expense import Expense
 from .models.category import Category
-from .models.recurrence import Recurrence
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
@@ -19,7 +18,7 @@ class ExpenseAdmin(admin.ModelAdmin):
         return form
 
     class Media:
-        js = ('js/expense_form.js',)
+        js = ('admin/js/expense_form.js',)
         
 class ParentCategoryFilter(admin.SimpleListFilter):
     title = 'Category Type'
@@ -43,4 +42,3 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = (ParentCategoryFilter,)
 
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Recurrence)
