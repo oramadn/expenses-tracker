@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Expense Tracker</h1>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'account_logout' %}">
+        <button>Logout</button>
+      </a>
+    {% else %}
+      <a href="{% url 'account_login' %}">
+        <button>Login</button>
+      </a>
+      <a href="{% url 'account_signup' %}">
+        <button>Sign Up</button>
+      </a>
+    {% endif %}
+
+  </header>
+</body>
+</html>
+
+<style>
+  header {
+    text-align: center;
+  }
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
