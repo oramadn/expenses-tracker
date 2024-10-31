@@ -1,9 +1,22 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from expenses.models import Category
+from rest_framework import generics
+from ..models.category import Category
+from ..serializers import CategorySerializer
+from rest_framework.permissions import IsAuthenticated
 
-def index(request):
-    return HttpResponse('We are at the index of category')
+
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
+
+
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
 
 @require_GET
 def get_subcategories(request):

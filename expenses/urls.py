@@ -1,13 +1,11 @@
 from django.urls import path
-from .views import (
-    expenses_view,
-    categories_view
-)
+from .views.expenses_view import ExpenseListCreateView, ExpenseDetailView
+from .views.categories_view import CategoryListCreateView, CategoryDetailView, get_subcategories
 
 urlpatterns = [
-    path('', expenses_view.index, name='expense_list'),
-    path('get-subcategories/', categories_view.get_subcategories, name='get_subcategories'),
-    # path('create/', expenses_views.expense_create, name='expense_create'),
-    # path('<int:pk>/edit/', expenses_views.expense_update, name='expense_update'),
-    # path('<int:pk>/delete/', expenses_views.expense_delete, name='expense_delete'),
+    path('get-subcategories/', get_subcategories, name='get_subcategories'),
+    path('expenses/', ExpenseListCreateView.as_view(), name='expense-list-create'),
+    path('expenses/<int:pk>/', ExpenseDetailView.as_view(), name='expense-detail'),
+    path('categories/', CategoryListCreateView.as_view(), name='category-list-create'),
+    path('categories/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),
 ]
